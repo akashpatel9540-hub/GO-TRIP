@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripBudget AI - Smart Trip Planning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">TripBudget <span class="text-orange-500">AI</span></h1>
+            <div class="space-x-6 hidden md:block text-gray-600">
+                <a href="#" class="hover:text-blue-600">Home</a>
+                <a href="#planner" class="hover:text-blue-600">Planner</a>
+                <a href="#destinations" class="hover:text-blue-600">Destinations</a>
+                <button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">Get Pro</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-blue-700 text-white py-20 px-4 text-center">
+        <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Apna Budget Batayein, Trip Hum Plan Karenge</h2>
+        <p class="text-xl mb-8 opacity-90">Plan your dream trip with AI-powered estimates.</p>
+        
+        <!-- Quick Budget Calculator -->
+        <div id="planner" class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-2xl flex flex-wrap gap-4 items-end text-gray-800">
+            <div class="flex-1 min-w-[200px]">
+                <label class="block text-left mb-2 font-semibold">Total Budget (₹)</label>
+                <input type="number" id="budgetInput" placeholder="e.g. 50000" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+            <div class="flex-1 min-w-[200px]">
+                <label class="block text-left mb-2 font-semibold">Days</label>
+                <select id="daysInput" class="w-full border p-3 rounded-lg outline-none">
+                    <option>3 Days</option>
+                    <option>5 Days</option>
+                    <option>7 Days</option>
+                </select>
+            </div>
+            <button onclick="calculateTrip()" class="bg-orange-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition w-full md:w-auto">
+                Find Destinations
+            </button>
+        </div>
+    </header>
+
+    <!-- Disclaimer -->
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 container mx-auto mt-8">
+        <p class="text-yellow-700 text-sm">
+            <i class="fas fa-info-circle mr-2"></i> <strong>Note:</strong> Sabhi kharche "Estimated" hain. Live prices ke liye Advanced version jald aa raha hai.
+        </p>
+    </div>
+
+    <!-- Sample Results Section (Hidden by default) -->
+    <section id="results" class="container mx-auto py-12 px-4 hidden">
+        <h3 class="text-3xl font-bold mb-8 text-center">Recommended for You</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&w=500&q=80" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h4 class="text-xl font-bold">Agra & Jaipur</h4>
+                    <p class="text-gray-500 text-sm mb-4 italic text-blue-600">Estimate: ₹15,000 - ₹22,000</p>
+                    <ul class="text-gray-600 text-sm space-y-2 mb-6">
+                        <li><i class="fas fa-hotel mr-2"></i> Stay: ₹6,000 (Estimate)</li>
+                        <li><i class="fas fa-utensils mr-2"></i> Food: ₹4,000 (Estimate)</li>
+                        <li><i class="fas fa-car mr-2"></i> Transport: ₹5,000 (Estimate)</li>
+                    </ul>
+                    <button class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition">View Day-by-Day Plan</button>
+                </div>
+            </div>
+            <!-- More cards can be added here -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-16 mt-12">
+        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-10 text-center">
+            <div>
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 text-2xl">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h4 class="font-bold text-xl mb-2">Smart Calculator</h4>
+                <p class="text-gray-500 text-sm">Apne budget ke hisaab se sabse sahi jagah chunein.</p>
+            </div>
+            <div>
+                <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-600 text-2xl">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h4 class="font-bold text-xl mb-2">Detailed Itinerary</h4>
+                <p class="text-gray-500 text-sm">Kahan rukna hai aur kya dekhna hai, sab ready milega.</p>
+            </div>
+            <div>
+                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 text-2xl">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h4 class="font-bold text-xl mb-2">Future AI Power</h4>
+                <p class="text-gray-500 text-sm">Advanced AI integration coming soon for live bookings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="bg-gray-800 text-white py-10 text-center mt-20">
+        <p>&copy; 2023 TripBudget AI. Built for smart travelers.</p>
+    </footer>
+
+    <script>
+        function calculateTrip() {
+            const budget = document.getElementById('budgetInput').value;
+            if(budget < 5000) {
+                alert("Please enter a budget above ₹5,000");
+                return;
+            }
+            // Logic to show results (Static demo for now)
+            document.getElementById('results').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('results').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
